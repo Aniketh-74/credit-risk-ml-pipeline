@@ -115,23 +115,57 @@
 
 ## Traceability
 
-| Requirement | Phase | Status |
-|-------------|-------|--------|
-| INFRA-01 to INFRA-04 | Phase 1 | Pending |
-| MODEL-01 to MODEL-04 | Phase 2 | Pending |
-| API-01 to API-06 | Phase 3 | Pending |
-| DRIFT-01 to DRIFT-05 | Phase 4 | Pending |
-| SIM-01 to SIM-04 | Phase 4 | Pending |
-| ORCH-01 to ORCH-06 | Phase 5 | Pending |
-| DASH-01 to DASH-05 | Phase 6 | Pending |
-| DEPLOY-01 to DEPLOY-05 | Phase 7 | Pending |
-| DOC-01 to DOC-04 | Phase 7 | Pending |
+| Requirement | Phase | Phase Name | Status |
+|-------------|-------|------------|--------|
+| INFRA-01 | Phase 1 | Solid Ground | Pending |
+| INFRA-02 | Phase 1 | Solid Ground | Pending |
+| INFRA-03 | Phase 1 | Solid Ground | Pending |
+| INFRA-04 | Phase 1 | Solid Ground | Pending |
+| MODEL-01 | Phase 2 | Champion Model | Pending |
+| MODEL-02 | Phase 2 | Champion Model | Pending |
+| MODEL-03 | Phase 2 | Champion Model | Pending |
+| MODEL-04 | Phase 2 | Champion Model | Pending |
+| API-01 | Phase 3 | The Scoring API | Pending |
+| API-02 | Phase 3 | The Scoring API | Pending |
+| API-03 | Phase 3 | The Scoring API | Pending |
+| API-04 | Phase 3 | The Scoring API | Pending |
+| API-05 | Phase 3 | The Scoring API | Pending |
+| API-06 | Phase 3 | The Scoring API | Pending |
+| DRIFT-01 | Phase 4 | Proving the Feedback Loop | Pending |
+| DRIFT-02 | Phase 4 | Proving the Feedback Loop | Pending |
+| DRIFT-03 | Phase 4 | Proving the Feedback Loop | Pending |
+| DRIFT-04 | Phase 4 | Proving the Feedback Loop | Pending |
+| DRIFT-05 | Phase 4 | Proving the Feedback Loop | Pending |
+| SIM-01 | Phase 4 | Proving the Feedback Loop | Pending |
+| SIM-02 | Phase 4 | Proving the Feedback Loop | Pending |
+| SIM-03 | Phase 4 | Proving the Feedback Loop | Pending |
+| SIM-04 | Phase 4 | Proving the Feedback Loop | Pending |
+| ORCH-01 | Phase 5 | Autonomous Daily Cycle | Pending |
+| ORCH-02 | Phase 5 | Autonomous Daily Cycle | Pending |
+| ORCH-03 | Phase 5 | Autonomous Daily Cycle | Pending |
+| ORCH-04 | Phase 5 | Autonomous Daily Cycle | Pending |
+| ORCH-05 | Phase 5 | Autonomous Daily Cycle | Pending |
+| ORCH-06 | Phase 5 | Autonomous Daily Cycle | Pending |
+| DASH-01 | Phase 6 | The Drift Story Visualized | Pending |
+| DASH-02 | Phase 6 | The Drift Story Visualized | Pending |
+| DASH-03 | Phase 6 | The Drift Story Visualized | Pending |
+| DASH-04 | Phase 6 | The Drift Story Visualized | Pending |
+| DASH-05 | Phase 6 | The Drift Story Visualized | Pending |
+| DEPLOY-01 | Phase 7 | Live and Recruiter-Ready | Pending |
+| DEPLOY-02 | Phase 7 | Live and Recruiter-Ready | Pending |
+| DEPLOY-03 | Phase 7 | Live and Recruiter-Ready | Pending |
+| DEPLOY-04 | Phase 7 | Live and Recruiter-Ready | Pending |
+| DEPLOY-05 | Phase 7 | Live and Recruiter-Ready | Pending |
+| DOC-01 | Phase 7 | Live and Recruiter-Ready | Pending |
+| DOC-02 | Phase 7 | Live and Recruiter-Ready | Pending |
+| DOC-03 | Phase 7 | Live and Recruiter-Ready | Pending |
+| DOC-04 | Phase 7 | Live and Recruiter-Ready | Pending |
 
 **Coverage:**
 - v1 requirements: 44 total
 - Mapped to phases: 44
-- Unmapped: 0 ✓
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-03-24*
-*Last updated: 2026-03-24 after initialization*
+*Last updated: 2026-03-24 after roadmap creation*
