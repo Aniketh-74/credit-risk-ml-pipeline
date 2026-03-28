@@ -34,6 +34,7 @@ Progress: [██░░░░░░░░] 20%
 - Trend: —
 
 *Updated after each plan completion*
+| Phase 01 P01-01 | 5 | 2 tasks | 9 files |
 
 ## Accumulated Context
 
@@ -50,6 +51,8 @@ Recent decisions affecting current work:
 - [Phase 01-solid-ground]: No version: key in docker-compose.yml — Docker Compose v2 plugin does not require it
 - [Phase 01-solid-ground]: start_period: 30s on postgres healthcheck allows init-multiple-dbs.sh to finish before dependents probe
 - [Phase 01-solid-ground]: MLflow artifact root uses named volume /mlflow/artifacts — decouples artifacts from container, enables GCS swap in Phase 7
+- [Phase 01]: sqlalchemy bumped to 2.0.48 for Python 3.14 Union typing compatibility
+- [Phase 01]: predictions.path column present from migration 0001 — CB-PDD router requires it before any prediction is written
 
 ### Pending Todos
 
