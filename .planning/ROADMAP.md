@@ -31,12 +31,13 @@ Decimal phases appear between their surrounding integers in numeric order.
   2. PostgreSQL contains the `predictions`, `outcomes`, `drift_scores`, and `alerts` tables, each with the correct columns and constraints, created via Alembic migration
   3. The custom MLflow Dockerfile successfully installs psycopg2 and MLflow can write experiment runs to the PostgreSQL backend
   4. All secrets and service URLs are read from `.env`; `.env.example` documents every required variable with no hardcoded credentials in any source file
-**Plans**: TBD
+**Plans**: 4 plans
 
 Plans:
-- [ ] 01-01: PostgreSQL schema design and Alembic migration setup
-- [ ] 01-02: Custom MLflow Dockerfile and docker-compose stack assembly
-- [ ] 01-03: Environment variable configuration and integration smoke test
+- [ ] 01-01-PLAN.md — SQLAlchemy 2.0 models and Alembic initial schema migration (Wave 1)
+- [ ] 01-02-PLAN.md — Custom MLflow Dockerfile and docker-compose stack assembly (Wave 1)
+- [ ] 01-03-PLAN.md — .env configuration, pyproject.toml, and full-stack smoke test (Wave 2)
+- [ ] 01-04-PLAN.md — Production-grade Streamlit dashboard UI with frontend-design skill (Wave 2)
 
 ### Phase 2: Champion Model
 **Goal**: A trained LightGBM credit risk model exists in MLflow Registry under the `@champion` alias, with SMOTE applied to handle class imbalance, ready to serve predictions and be retrained against
@@ -148,7 +149,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Solid Ground | 0/3 | Not started | - |
+| 1. Solid Ground | 0/3 | In progress | - |
 | 2. Champion Model | 0/3 | Not started | - |
 | 3. The Scoring API | 0/3 | Not started | - |
 | 4. Proving the Feedback Loop | 0/4 | Not started | - |

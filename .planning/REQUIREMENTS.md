@@ -10,8 +10,8 @@
 ### Infrastructure
 
 - [ ] **INFRA-01**: PostgreSQL schema with tables for predictions, outcomes, drift_scores, and alerts — with Alembic migrations
-- [ ] **INFRA-02**: Full docker-compose stack (FastAPI, Airflow, MLflow, PostgreSQL, Streamlit) running with a single `docker-compose up`
-- [ ] **INFRA-03**: Custom MLflow Dockerfile that includes psycopg2 (official image lacks it)
+- [x] **INFRA-02**: Full docker-compose stack (FastAPI, Airflow, MLflow, PostgreSQL, Streamlit) running with a single `docker-compose up`
+- [x] **INFRA-03**: Custom MLflow Dockerfile that includes psycopg2 (official image lacks it)
 - [ ] **INFRA-04**: Environment variable configuration via .env with a complete .env.example
 
 ### Baseline Model
