@@ -9,7 +9,7 @@
 
 ### Infrastructure
 
-- [ ] **INFRA-01**: PostgreSQL schema with tables for predictions, outcomes, drift_scores, and alerts — with Alembic migrations
+- [x] **INFRA-01**: PostgreSQL schema with tables for predictions, outcomes, drift_scores, and alerts — with Alembic migrations
 - [x] **INFRA-02**: Full docker-compose stack (FastAPI, Airflow, MLflow, PostgreSQL, Streamlit) running with a single `docker-compose up`
 - [x] **INFRA-03**: Custom MLflow Dockerfile that includes psycopg2 (official image lacks it)
 - [ ] **INFRA-04**: Environment variable configuration via .env with a complete .env.example
@@ -118,7 +118,7 @@
 | Requirement | Phase | Phase Name | Status |
 |-------------|-------|------------|--------|
 | INFRA-01 | Phase 1 | Solid Ground | Pending |
-| INFRA-02 | Phase 1 | Solid Ground | Pending |
+| INFRA-02 | Phase 1 | Solid Ground | Complete |
 | INFRA-03 | Phase 1 | Solid Ground | Pending |
 | INFRA-04 | Phase 1 | Solid Ground | Pending |
 | MODEL-01 | Phase 2 | Champion Model | Pending |
