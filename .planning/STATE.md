@@ -53,6 +53,8 @@ Recent decisions affecting current work:
 - [Phase 01-solid-ground]: MLflow artifact root uses named volume /mlflow/artifacts — decouples artifacts from container, enables GCS swap in Phase 7
 - [Phase 01]: sqlalchemy bumped to 2.0.48 for Python 3.14 Union typing compatibility
 - [Phase 01]: predictions.path column present from migration 0001 — CB-PDD router requires it before any prediction is written
+- [Phase 01-03]: All secret placeholders use angle-bracket syntax so grep reveals any accidental literal value
+- [Phase 01-03]: pyproject.toml uses E501 ignored in ruff — black handles line length, ruff handles everything else
 
 ### Pending Todos
 
