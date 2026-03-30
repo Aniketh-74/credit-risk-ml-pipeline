@@ -115,6 +115,7 @@ services:
     environment:
       APP_DB_URL: ${APP_DB_URL}
       MLFLOW_TRACKING_URI: http://mlflow:5000
+      PYTHONPATH: /app/src
     ports:
       - "8501:8501"
 
