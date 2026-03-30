@@ -48,12 +48,12 @@ Plans:
   2. A LightGBM model trained with SMOTE achieves AUC > 0.85 on the held-out test set, logged as an MLflow run with hyperparameters, precision-recall curve, and feature importances
   3. The trained model is registered in MLflow Registry and the `@champion` alias resolves to it — no deprecated `stage="Production"` references exist anywhere in the codebase
   4. A quick synthetic validation confirms CB-PDD fires at least once on a simulated denial loop using this model's score distribution — catching the class imbalance pitfall before Phase 4 builds on it
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
-- [ ] 02-01: EDA notebook — missing values, class distribution, feature correlations
-- [ ] 02-02: LightGBM training pipeline with SMOTE and MLflow tracking
-- [ ] 02-03: MLflow Registry promotion using `@champion` alias and early CB-PDD smoke test
+- [ ] 02-01-PLAN.md — EDA notebook: class distribution, missing values, Spearman correlations, outlier analysis (Wave 1)
+- [ ] 02-02-PLAN.md — LightGBM training pipeline with SMOTE, MLflow autolog, PR curve artifact, and test suite (Wave 1)
+- [ ] 02-03-PLAN.md — MLflow Registry promotion using `@champion` alias and CB-PDD smoke test at τ∈{500,1000,2000} (Wave 2)
 
 ### Phase 3: The Scoring API
 **Goal**: A FastAPI service that scores loan applications, routes a configurable fraction through the CheckerBoard predictor (required by CB-PDD), logs predictions asynchronously, and records outcomes — all with the model loaded once at startup
@@ -149,8 +149,8 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Solid Ground | 0/3 | In progress | - |
-| 2. Champion Model | 0/3 | Not started | - |
+| 1. Solid Ground | 4/4 | Complete | 2026-03-28 |
+| 2. Champion Model | 0/3 | In progress | - |
 | 3. The Scoring API | 0/3 | Not started | - |
 | 4. Proving the Feedback Loop | 0/4 | Not started | - |
 | 5. Autonomous Daily Cycle | 0/4 | Not started | - |
