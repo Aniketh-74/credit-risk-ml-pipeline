@@ -10,9 +10,9 @@ See: .planning/PROJECT.md (updated 2026-03-24)
 ## Current Position
 
 Phase: 2 of 7 (Champion Model)
-Plan: 1 of 4 in current phase
-Status: Phase 2 in progress — Plan 02-01 complete (EDA notebook)
-Last activity: 2026-04-01 — Plan 02-01 complete (EDA notebook — class dist, missing values, outliers, Spearman heatmap)
+Plan: 2 of 4 in current phase
+Status: Phase 2 in progress — Plan 02-02 complete (LightGBM + SMOTE training pipeline)
+Last activity: 2026-04-01 — Plan 02-02 complete (LightGBM training pipeline with SMOTE, MLflow autolog, PR curve, 10/10 tests passing)
 
 Progress: [█████░░░░░] 50%
 
@@ -28,7 +28,7 @@ Progress: [█████░░░░░] 50%
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
 | 01-solid-ground | 4 | ~40 min | ~10 min |
-| 02-champion-model | 1 | ~20 min | ~20 min |
+| 02-champion-model | 2 | ~65 min | ~32 min |
 
 **Recent Trend:**
 - Last 5 plans: 01-02 (5 min), 01-03 (15 min), 01-04 (15 min), 02-01 (20 min)
@@ -38,6 +38,7 @@ Progress: [█████░░░░░] 50%
 | Phase 01 P01-01 | 5 | 2 tasks | 9 files |
 | Phase 01 P01-04 | 15 | 1 task | 8 files |
 | Phase 02 P02-01 | 20 | 1 task | 2 files |
+| Phase 02 P02-02 | 45 | 2 tasks | 9 files |
 
 ## Accumulated Context
 
@@ -66,6 +67,10 @@ Recent decisions affecting current work:
 - [Phase 02-01 EDA]: SMOTE applied after train/test split only — pre-split SMOTE causes test-set synthetic sample leakage
 - [Phase 02-01 EDA]: Spearman correlation used for heatmap — credit features violate Pearson's linearity and normality assumptions
 - [Phase 02-01 EDA]: Retain all 3 late-payment count features despite ~0.98 pairwise correlation — LightGBM handles multicollinearity; each captures distinct timing signal
+- [Phase 02-02]: build_train_test() returns 5-tuple including fitted SimpleImputer — scoring API needs same imputer statistics for live prediction requests
+- [Phase 02-02]: is_unbalance=False in LightGBM — SMOTE already balances training set to 50/50; double-applying minority upweighting degrades model quality
+- [Phase 02-02]: MLflow tests use sqlite:// backend instead of file:// — MLflow 3.x rejects file:// URIs on Windows with backslash paths; SQLite recommended by MLflow deprecation warnings
+- [Phase 02-02]: compute_auc takes (y_true, y_score) not (model, X_test, y_test) — keeps evaluate.py stateless and reusable for non-LightGBM models
 
 ### Pending Todos
 
@@ -80,5 +85,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-04-01
-Stopped at: Completed 02-01-PLAN.md — EDA notebook (class dist, missing values, outliers, Spearman heatmap)
+Stopped at: Completed 02-02-PLAN.md — LightGBM + SMOTE training pipeline with MLflow autolog and test suite
 Resume file: None
