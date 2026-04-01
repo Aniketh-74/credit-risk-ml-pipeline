@@ -10,7 +10,7 @@ def synthetic_credit_df() -> pd.DataFrame:
 
     Replicates the real dataset's structure:
     - 10 feature columns matching FEATURE_COLS
-    - 1 target column (SeriousDelinquency)
+    - 1 target column (SeriousDlqin2yrs)
     - MonthlyIncome has 19.8% NaN
     - NumberOfDependents has 2.6% NaN
     - NumberOfTimes90DaysLate has a handful of values at 96/98 (outlier sentinels)
@@ -20,7 +20,7 @@ def synthetic_credit_df() -> pd.DataFrame:
     default_mask = rng.random(n) < 0.07  # 7% default rate
 
     df = pd.DataFrame({
-        "SeriousDelinquency": default_mask.astype(int),
+        "SeriousDlqin2yrs": default_mask.astype(int),
         "RevolvingUtilizationOfUnsecuredLines": rng.beta(1.5, 5, n),
         "age": rng.integers(20, 85, n).astype(float),
         "NumberOfTime30-59DaysPastDueNotWorse": rng.integers(0, 6, n).astype(float),

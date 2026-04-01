@@ -7,7 +7,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.impute import SimpleImputer
 from imblearn.over_sampling import SMOTE
 
-TARGET_COL = "SeriousDelinquency"
+TARGET_COL = "SeriousDlqin2yrs"
 FEATURE_COLS = [
     "RevolvingUtilizationOfUnsecuredLines",
     "age",
