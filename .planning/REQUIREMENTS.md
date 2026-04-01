@@ -19,7 +19,7 @@
 - [ ] **MODEL-01**: LightGBM model trained on Give Me Credit dataset (150k rows, AUC > 0.85) with SMOTE for class imbalance
 - [ ] **MODEL-02**: All training runs logged to MLflow — hyperparameters, AUC, precision-recall curve, feature importances
 - [ ] **MODEL-03**: Trained model registered in MLflow Registry and promoted using `@champion` alias (no deprecated stages API)
-- [ ] **MODEL-04**: EDA notebook for Give Me Credit — missing value analysis (MonthlyIncome 19.8% NaN), class distribution, feature correlations
+- [x] **MODEL-04**: EDA notebook for Give Me Credit — missing value analysis (MonthlyIncome 19.8% NaN), class distribution, feature correlations
 
 ### Serving API
 
@@ -124,7 +124,7 @@
 | MODEL-01 | Phase 2 | Champion Model | Pending |
 | MODEL-02 | Phase 2 | Champion Model | Pending |
 | MODEL-03 | Phase 2 | Champion Model | Pending |
-| MODEL-04 | Phase 2 | Champion Model | Pending |
+| MODEL-04 | Phase 2 | Champion Model | Complete |
 | API-01 | Phase 3 | The Scoring API | Pending |
 | API-02 | Phase 3 | The Scoring API | Pending |
 | API-03 | Phase 3 | The Scoring API | Pending |

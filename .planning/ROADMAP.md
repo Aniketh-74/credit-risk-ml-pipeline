@@ -51,7 +51,7 @@ Plans:
 **Plans**: 3 plans
 
 Plans:
-- [ ] 02-01-PLAN.md — EDA notebook: class distribution, missing values, Spearman correlations, outlier analysis (Wave 1)
+- [x] 02-01-PLAN.md — EDA notebook: class distribution, missing values, Spearman correlations, outlier analysis (Wave 1) — DONE 2026-04-01
 - [ ] 02-02-PLAN.md — LightGBM training pipeline with SMOTE, MLflow autolog, PR curve artifact, and test suite (Wave 1)
 - [ ] 02-03-PLAN.md — MLflow Registry promotion using `@champion` alias and CB-PDD smoke test at τ∈{500,1000,2000} (Wave 2)
 
