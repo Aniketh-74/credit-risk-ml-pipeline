@@ -24,6 +24,14 @@ python_files = ["test_*.py"]
 python_functions = ["test_*"]
 addopts = "-v --tb=short"
 
+[project.optional-dependencies]
+dev = [
+    "jupyter",
+    "seaborn==0.13.2",
+    "scipy==1.15.2",
+    "matplotlib==3.8.4",
+]
+
 [tool.mypy]
 python_version = "3.11"
 strict = false
