@@ -109,17 +109,17 @@ def simple_cbpdd_smoke(records: list[dict], tau: int, alpha: float = 0.05) -> di
     ref_scores = [r["score"] for r in records if r["simulation_day"] < 7]
     detections = 0
     detection_days = []
-    trial_count = 0
+    accumulated: list[float] = []
 
     for day in days[7:]:
         day_scores = [r["score"] for r in records if r["simulation_day"] == day]
-        trial_count += len(day_scores)
-        if trial_count >= tau:
-            _, p_value = stats.mannwhitneyu(ref_scores, day_scores, alternative="two-sided")
+        accumulated.extend(day_scores)
+        if len(accumulated) >= tau:
+            _, p_value = stats.mannwhitneyu(ref_scores, accumulated, alternative="two-sided")
             if p_value < alpha:
                 detections += 1
                 detection_days.append(day)
-            trial_count = 0
+            accumulated = []
 
     return {"tau": tau, "detections": detections, "detection_days": detection_days}
 
@@ -131,7 +131,7 @@ def main() -> None:
         print(f"ERROR: {csv_path} not found", file=sys.stderr)
         sys.exit(1)
 
-    with tempfile.TemporaryDirectory() as tmpdir:
+    with tempfile.TemporaryDirectory(ignore_cleanup_errors=True) as tmpdir:
         mlflow_uri = f"sqlite:///{tmpdir}/smoke_mlflow.db"
         mlflow.set_tracking_uri(mlflow_uri)
 
@@ -160,9 +160,9 @@ def main() -> None:
         # SMOTE only affects X_train — X_test is the natural 7% imbalanced split
         X_train, X_test, y_train, y_test, imputer = build_train_test(X, y)
 
-        records = generate_denial_loop_scores(champion, X_test, n_days=30, n_per_day=100)
+        records = generate_denial_loop_scores(champion, X_test, n_days=30, n_per_day=1000)
 
-        print(f"\nCB-PDD Smoke Test Results (30-day denial loop, n_per_day=100):")
+        print(f"\nCB-PDD Smoke Test Results (30-day denial loop, n_per_day=1000):")
         all_detections = []
         for tau in [500, 1000, 2000]:
             result = simple_cbpdd_smoke(records, tau)
