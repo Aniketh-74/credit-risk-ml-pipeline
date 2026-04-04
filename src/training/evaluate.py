@@ -54,3 +54,41 @@ def log_pr_curve_artifact(
     plt.close(fig)
 
     mlflow.log_artifact(output_path, artifact_path="plots")
+
+
+def compute_youden_threshold(y_true: np.ndarray, y_score: np.ndarray) -> float:
+    """Compute Youden's J optimal threshold: argmax(TPR - FPR).
+
+    Args:
+        y_true: Ground-truth binary labels.
+        y_score: Predicted probabilities for the positive class.
+
+    Returns:
+        Threshold float that maximises sensitivity + specificity - 1.
+    """
+    from sklearn.metrics import roc_curve
+    fpr, tpr, thresholds = roc_curve(y_true, y_score)
+    j_scores = tpr - fpr
+    optimal_idx = int(np.argmax(j_scores))
+    return float(thresholds[optimal_idx])
+
+
+def log_imputer_artifact(imputer, artifact_subdir: str = "imputer") -> None:
+    """Pickle the fitted SimpleImputer and log as MLflow artifact.
+
+    Must be called inside an active mlflow.start_run() context.
+    Artifact path: {artifact_subdir}/imputer.pkl
+    (API loads it via client.download_artifacts(run_id, 'imputer/imputer.pkl'))
+
+    Args:
+        imputer: Fitted sklearn SimpleImputer instance.
+        artifact_subdir: MLflow artifact sub-directory. Default 'imputer'.
+    """
+    import pickle
+    import tempfile
+    import os
+    with tempfile.TemporaryDirectory() as tmp:
+        path = os.path.join(tmp, "imputer.pkl")
+        with open(path, "wb") as f:
+            pickle.dump(imputer, f)
+        mlflow.log_artifact(path, artifact_path=artifact_subdir)

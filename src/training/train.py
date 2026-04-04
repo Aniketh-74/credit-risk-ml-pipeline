@@ -7,7 +7,12 @@ import lightgbm as lgb
 from sklearn.metrics import auc as sklearn_auc, precision_recall_curve
 
 from src.training.data import load_and_preprocess, build_train_test
-from src.training.evaluate import compute_auc, log_pr_curve_artifact
+from src.training.evaluate import (
+    compute_auc,
+    log_pr_curve_artifact,
+    compute_youden_threshold,
+    log_imputer_artifact,
+)
 
 
 def run_training_pipeline(
@@ -33,7 +38,7 @@ def run_training_pipeline(
     mlflow.lightgbm.autolog(log_models=True, log_input_examples=False)
 
     X, y = load_and_preprocess(csv_path)
-    X_train, X_test, y_train, y_test, _imputer = build_train_test(X, y)
+    X_train, X_test, y_train, y_test, imputer = build_train_test(X, y)
 
     params = {
         "objective": "binary",
@@ -64,6 +69,10 @@ def run_training_pipeline(
         precision, recall, _ = precision_recall_curve(y_test.values, y_proba)
         pr_auc = sklearn_auc(recall, precision)
         log_pr_curve_artifact(y_test.values, y_proba, pr_auc)
+
+        threshold = compute_youden_threshold(y_test.values, y_proba)
+        mlflow.log_metric("threshold_youdens_j", threshold)
+        log_imputer_artifact(imputer)
 
         run_id = run.info.run_id
 
