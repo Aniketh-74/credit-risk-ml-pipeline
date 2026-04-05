@@ -11,13 +11,16 @@ from contextlib import asynccontextmanager
 
 import mlflow
 import mlflow.pyfunc
+import pandas as pd
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 from mlflow import MlflowClient
 from sqlalchemy import text
 
 from src.api.db import Session
-from src.api.schemas import HealthResponse
+from src.api.preprocess import FEATURE_COLS as PREPROCESS_FEATURE_COLS, preprocess_for_inference
+from src.api.router import checkerboard_score, route_request
+from src.api.schemas import HealthResponse, LoanApplicationRequest, ScoreResponse
 
 logger = logging.getLogger(__name__)
 
@@ -84,4 +87,56 @@ async def health(request: Request):
     return HealthResponse(
         status="ok",
         model_version=request.app.state.model_version,
+    )
+
+
+@app.post("/score", response_model=ScoreResponse)
+async def score(request: LoanApplicationRequest, req: Request) -> ScoreResponse:
+    """Score a loan application.
+
+    Routes to either the LightGBM model or the CheckerBoard stub based on
+    CHECKERBOARD_MIX. Returns probability score, approve/deny decision (using
+    Youden's J threshold from app.state, not hardcoded 0.5), routing path,
+    and current @champion model version.
+
+    Note: Decision written to DB uses past tense ('approved'/'denied') to
+    satisfy the predictions CHECK constraint. The response uses present tense
+    ('approve'/'deny') per the CONTEXT.md response contract. BackgroundTask
+    DB logging is added in Plan 03-03.
+    """
+    state = req.app.state
+    path = route_request()
+
+    if path == "checkerboard":
+        raw_score = checkerboard_score()
+    else:
+        features = {
+            "RevolvingUtilizationOfUnsecuredLines": request.revolving_utilization,
+            "age": request.age,
+            "NumberOfTime30-59DaysPastDueNotWorse": request.past_due_30_59,
+            "DebtRatio": request.debt_ratio,
+            "MonthlyIncome": request.monthly_income,
+            "NumberOfOpenCreditLinesAndLoans": request.open_credit_lines,
+            "NumberOfTimes90DaysLate": request.times_90_days_late,
+            "NumberRealEstateLoansOrLines": request.real_estate_loans,
+            "NumberOfTime60-89DaysPastDueNotWorse": request.past_due_60_89,
+            "NumberOfDependents": request.dependents,
+        }
+        X = preprocess_for_inference(features, state.imputer)
+        all_cols = PREPROCESS_FEATURE_COLS + [
+            "MonthlyIncome_was_missing",
+            "NumberOfDependents_was_missing",
+        ]
+        X_df = pd.DataFrame(X, columns=all_cols)
+        proba = state.model.predict(X_df)
+        raw_score = float(proba[0])
+
+    # Youden's J threshold — deny when score exceeds threshold
+    decision = "deny" if raw_score > state.threshold else "approve"
+
+    return ScoreResponse(
+        score=raw_score,
+        decision=decision,
+        path=path,
+        model_version=state.model_version,
     )
