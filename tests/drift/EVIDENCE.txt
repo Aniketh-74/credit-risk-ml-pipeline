@@ -1,0 +1,46 @@
+============================= test session starts =============================
+platform win32 -- Python 3.14.2, pytest-9.0.2, pluggy-1.6.0 -- C:\Users\Hp\AppData\Local\Programs\Python\Python314\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\Hp\Desktop\GSOC\Roadmap
+configfile: pyproject.toml
+plugins: anyio-4.12.0, asyncio-1.3.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 35 items
+
+tests/simulators/test_simulators.py::TestDenialLoopSimulator::test_writes_simulation_day_on_every_row PASSED [  2%]
+tests/simulators/test_simulators.py::TestDenialLoopSimulator::test_outcome_received_at_after_predicted_at PASSED [  5%]
+tests/simulators/test_simulators.py::TestScoreGamingSimulator::test_writes_simulation_day_on_every_row PASSED [  8%]
+tests/simulators/test_simulators.py::TestScoreGamingSimulator::test_both_tables_populated PASSED [ 11%]
+tests/drift/test_cb_pdd.py::TestCheckBoardPredictor::test_returns_zero_or_one PASSED [ 14%]
+tests/drift/test_cb_pdd.py::TestCheckBoardPredictor::test_flips_after_tau_instances PASSED [ 17%]
+tests/drift/test_cb_pdd.py::TestCheckBoardPredictor::test_reset_restarts_count PASSED [ 20%]
+tests/drift/test_cb_pdd.py::TestDensityChangeTracker::test_update_appends_to_groups PASSED [ 22%]
+tests/drift/test_cb_pdd.py::TestDensityChangeTracker::test_short_trial_is_skipped PASSED [ 25%]
+tests/drift/test_cb_pdd.py::TestDensityChangeTracker::test_reset_clears_groups PASSED [ 28%]
+tests/drift/test_cb_pdd.py::TestPerformativeDriftDetector::test_init_default_params PASSED [ 31%]
+tests/drift/test_cb_pdd.py::TestPerformativeDriftDetector::test_invalid_params_raise PASSED [ 34%]
+tests/drift/test_cb_pdd.py::TestPerformativeDriftDetector::test_denial_loop_fires PASSED [ 37%]
+tests/drift/test_cb_pdd.py::TestPerformativeDriftDetector::test_score_gaming_fires PASSED [ 40%]
+tests/drift/test_cb_pdd.py::TestPerformativeDriftDetector::test_random_data_does_not_fire PASSED [ 42%]
+tests/drift/test_cb_pdd.py::TestPerformativeDriftDetector::test_requires_two_consecutive_windows PASSED [ 45%]
+tests/drift/test_cb_pdd.py::TestPerformativeDriftDetector::test_reset_clears_state PASSED [ 48%]
+tests/drift/test_integration.py::TestFullPipelineIntegration::test_returns_valid_dict PASSED [ 51%]
+tests/drift/test_integration.py::TestFullPipelineIntegration::test_correct_types PASSED [ 54%]
+tests/drift/test_integration.py::TestFullPipelineIntegration::test_drift_score_is_p_value PASSED [ 57%]
+tests/drift/test_integration.py::TestFullPipelineIntegration::test_psi_nonnegative PASSED [ 60%]
+tests/drift/test_integration.py::TestFullPipelineIntegration::test_window_end_is_latest_outcome PASSED [ 62%]
+tests/drift/test_integration.py::TestFullPipelineIntegration::test_no_exception_across_window_sizes PASSED [ 65%]
+tests/drift/test_scorer.py::TestComputePsi::test_empty_arrays_return_zero PASSED [ 68%]
+tests/drift/test_scorer.py::TestComputePsi::test_identical_distributions_near_zero PASSED [ 71%]
+tests/drift/test_scorer.py::TestComputePsi::test_shifted_distribution_nonzero PASSED [ 74%]
+tests/drift/test_scorer.py::TestComputePsi::test_psi_is_nonnegative PASSED [ 77%]
+tests/drift/test_scorer.py::TestComputeDriftEmpty::test_empty_window_safe_defaults PASSED [ 80%]
+tests/drift/test_scorer.py::TestComputeDriftSeeded::test_returns_drift_result_shape PASSED [ 82%]
+tests/drift/test_scorer.py::TestComputeDriftSeeded::test_types_are_correct PASSED [ 85%]
+tests/drift/test_scorer.py::TestComputeDriftSeeded::test_drift_score_in_valid_range PASSED [ 88%]
+tests/drift/test_scorer.py::TestComputeDriftSeeded::test_psi_score_nonnegative PASSED [ 91%]
+tests/drift/test_scorer.py::TestComputeDriftSeeded::test_window_end_is_max_outcome_date PASSED [ 94%]
+tests/drift/test_scorer.py::TestComputeDriftSeeded::test_narrow_window_excludes_early_rows PASSED [ 97%]
+tests/drift/test_scorer.py::TestComputeDriftSeeded::test_idempotent PASSED [100%]
+
+============================= 35 passed in 3.25s ==============================
