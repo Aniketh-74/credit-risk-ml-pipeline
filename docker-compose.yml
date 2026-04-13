@@ -68,8 +68,16 @@ services:
       AIRFLOW__CORE__FERNET_KEY: ${AIRFLOW__CORE__FERNET_KEY}
       AIRFLOW__CORE__EXECUTOR: LocalExecutor
       AIRFLOW__WEBSERVER__SECRET_KEY: ${AIRFLOW__WEBSERVER__SECRET_KEY}
+      APP_DB_URL: ${APP_DB_URL}
+      MLFLOW_TRACKING_URI: http://mlflow:5000
+      SCORE_API_URL: http://api:8000
+      DATA_CSV_PATH: /opt/airflow/data/cs-training.csv
+      PYTHONPATH: /opt/airflow
     volumes:
       - ./dags:/opt/airflow/dags
+      - ./src:/opt/airflow/src
+      - ./db:/opt/airflow/db
+      - ./data:/opt/airflow/data
     command: scheduler
 
   airflow-api-server:
@@ -82,6 +90,11 @@ services:
       AIRFLOW__CORE__FERNET_KEY: ${AIRFLOW__CORE__FERNET_KEY}
       AIRFLOW__CORE__EXECUTOR: LocalExecutor
       AIRFLOW__WEBSERVER__SECRET_KEY: ${AIRFLOW__WEBSERVER__SECRET_KEY}
+      PYTHONPATH: /opt/airflow
+    volumes:
+      - ./dags:/opt/airflow/dags
+      - ./src:/opt/airflow/src
+      - ./db:/opt/airflow/db
     command: api-server
     ports:
       - "8081:8080"
